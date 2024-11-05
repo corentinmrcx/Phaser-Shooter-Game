@@ -7,4 +7,5 @@ const config = {
   scene: {},
 };
 
+// eslint-disable-next-line no-new -- controle désactiver
 new Phaser.Game(config);
