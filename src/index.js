@@ -31,7 +31,12 @@ const config = {
       keys.left.on("down", () => (rectangle.x -= 10));
       keys.right.on("down", () => (rectangle.x += 10));
       keys.space.on("down", () => this.cameras.main.flash(500, 255, 255, 255));
+      this.physics.add.existing(rectangle);
     },
+  },
+
+  physics: {
+    default: "arcade",
   },
 };
 
