@@ -9,11 +9,17 @@ const config = {
   },
   scene: {
     create() {
+      const centreLargeur = this.scale.width / 2;
+      const centreHauteur = this.scale.height / 2;
       this.add.circle(200, 200, 25, 0xff0000);
       this.add.circle(600, 200, 25, 0x0000ff);
-      this.add.text(400, 0, "A first scene").setOrigin(0.5, 0);
-      this.add.star(400, 300, 5, 32, 64, 0xffff00).setOrigin(0.5, 0.5);
-      this.add.rectangle(400, 550, 50, 15, 0x00ff00).setOrigin(0.5, 0.5);
+      this.add.text(centreLargeur, 0, "A first scene").setOrigin(0.5, 0);
+      this.add
+        .star(centreLargeur, centreHauteur, 5, 32, 64, 0xffff00)
+        .setOrigin(0.5, 0.5);
+      this.add
+        .rectangle(centreLargeur, 550, 50, 15, 0x00ff00)
+        .setOrigin(0.5, 0.5);
     },
   },
 };
