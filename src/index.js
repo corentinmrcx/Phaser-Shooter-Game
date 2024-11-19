@@ -17,9 +17,20 @@ const config = {
       this.add
         .star(centreLargeur, centreHauteur, 5, 32, 64, 0xffff00)
         .setOrigin(0.5, 0.5);
-      this.add
+
+      const rectangle = this.add
         .rectangle(centreLargeur, 550, 50, 15, 0x00ff00)
         .setOrigin(0.5, 0.5);
+
+      const keys = this.input.keyboard.addKeys({
+        left: Phaser.Input.Keyboard.KeyCodes.LEFT,
+        right: Phaser.Input.Keyboard.KeyCodes.RIGHT,
+        space: Phaser.Input.Keyboard.KeyCodes.SPACE,
+      });
+
+      keys.left.on("down", () => (rectangle.x -= 10));
+      keys.right.on("down", () => (rectangle.x += 10));
+      keys.space.on("down", () => this.cameras.main.flash(500, 255, 255, 255));
     },
   },
 };
