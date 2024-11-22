@@ -7,12 +7,11 @@
     "dev": "vite",
     "build": "vite build",
     "preview": "vite preview",
-    "fix" : "npx eslint *.js **/*.js --fix"
+    "fix": "npx eslint *.js **/*.js --fix"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "description": "",
   "devDependencies": {
     "@eslint/js": "^9.14.0",
     "eslint": "^9.14.0",
@@ -24,5 +23,7 @@
     "eslint-config-prettier": "^9.1.0",
     "eslint-plugin-prettier": "^5.2.1",
     "phaser": "^3.86.0"
-  }
+  },
+  "main": "eslint.config.js",
+  "description": ""
 }
