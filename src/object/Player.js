@@ -16,6 +16,7 @@ export class Player extends Phaser.GameObjects.Rectangle {
 
     scene.add.existing(this);
     scene.physics.add.existing(this);
+    this.body.setCollideWorldBounds(true);
   }
 
   handleKeys(keys) {
