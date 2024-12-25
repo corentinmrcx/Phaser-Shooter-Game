@@ -1,7 +1,7 @@
 import Phaser from "phaser";
 import { Player } from "../object/Player.js";
 import { GroupLaser } from "../object/GroupLaser.js";
-import { Laser } from "../object/Laser.js";
+import { GroupEnemy } from "../object/GroupEnemy.js";
 
 /**
  *
@@ -16,7 +16,8 @@ export class Play extends Phaser.Scene {
     this.add.text(centreLargeur, 0, "A first scene").setOrigin(0.5, 0);
 
     this.player = new Player(this);
-    this.laser = new GroupLaser(this, 5);
+    this.lasers = new GroupLaser(this, 5);
+    this.enemies = new GroupEnemy(this, 60, 30);
 
     const keys = {
       left: Phaser.Input.Keyboard.KeyCodes.LEFT,
@@ -25,6 +26,23 @@ export class Play extends Phaser.Scene {
     };
 
     this.player.handleKeys(keys);
-    this.laser.handleKeysFire(keys);
+    this.lasers.handleKeysFire(keys);
+    this.enemies.start();
+
+    this.physics.add.overlap(
+      this.lasers,
+      this.enemies,
+      (lasers, enemies) => {
+        if (lasers.active && enemies.active) {
+          lasers.setActive(false);
+          lasers.setVisible(false);
+          enemies.setVisible(false);
+          enemies.setActive(false);
+        }
+      },
+      () => {
+        return true;
+      },
+    );
   }
 }
