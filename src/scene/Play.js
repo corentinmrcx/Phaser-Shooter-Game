@@ -9,13 +9,12 @@ import { GroupEnemy } from "../object/GroupEnemy.js";
 export class Play extends Phaser.Scene {
   constructor() {
     super("play");
+    this.score = 0;
+    this.lives = 3;
   }
   create() {
     const centerWidth = this.scale.width / 2;
     const centerHeight = this.scale.height / 2;
-
-    this.score = 0;
-    this.lives = 3;
 
     const textStyle = {
       fontFamily: "Arial",
@@ -37,9 +36,11 @@ export class Play extends Phaser.Scene {
     this.scoreText = this.add
       .text(scoreX, scoreY, "Score : 0", textStyle)
       .setDepth(1);
+
     this.numberLives = this.add
       .text(scoreX, scoreY + 30, `Lives : ${this.lives}`, textStyle)
       .setDepth(1);
+
     this.player = new Player(this);
     this.lasers = new GroupLaser(this, 5);
     this.enemies = new GroupEnemy(this, 60, 30);
