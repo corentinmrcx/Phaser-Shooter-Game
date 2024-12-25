@@ -11,10 +11,12 @@ export class Play extends Phaser.Scene {
     super("play");
   }
   create() {
-    const centreLargeur = this.scale.width / 2;
-    const centreHauteur = this.scale.height / 2;
+    const centerWidth = this.scale.width / 2;
+    const centerHeight = this.scale.height / 2;
 
     this.score = 0;
+    this.lives = 3;
+
     const textStyle = {
       fontFamily: "Arial",
       fontSize: "25px",
@@ -22,11 +24,21 @@ export class Play extends Phaser.Scene {
       color: "#ffffff",
     };
 
+    const textStyleTitle = {
+      fontFamily: "Arial",
+      fontSize: "50px",
+      fontWeight: "bold",
+      color: "#ff0000",
+    };
+
     const scoreX = 40;
     const scoreY = 40;
 
     this.scoreText = this.add
       .text(scoreX, scoreY, "Score : 0", textStyle)
+      .setDepth(1);
+    this.numberLives = this.add
+      .text(scoreX, scoreY + 30, `Lives : ${this.lives}`, textStyle)
       .setDepth(1);
     this.player = new Player(this);
     this.lasers = new GroupLaser(this, 5);
@@ -58,6 +70,23 @@ export class Play extends Phaser.Scene {
       () => {
         return true;
       },
+    );
+
+    this.events.on(
+      "bottomReached",
+      () => {
+        this.lives -= 1;
+        this.numberLives.setText(`Lives : ${this.lives}`);
+        if (this.lives < 0) {
+          this.numberLives.setText(`Lives : Dead`);
+          this.add
+            .text(centerWidth, centerHeight, "Game Over !", textStyleTitle)
+            .setOrigin(0.5)
+            .setDepth(2);
+          this.scene.pause();
+        }
+      },
+      this,
     );
   }
 }

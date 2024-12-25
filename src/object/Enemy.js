@@ -20,6 +20,7 @@ export class Enemy extends Phaser.GameObjects.Arc {
     if (this.y > this.scene.game.canvas.height) {
       this.setActive(false);
       this.setVisible(false);
+      this.scene.events.emit("bottomReached");
     }
   }
 
