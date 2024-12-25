@@ -14,7 +14,6 @@ Ce projet est un jeu de type "Fixed Shooter" développé avec le framework Phase
 **Technologies utilisées :**
 - Phaser 
 - JavaScript
-Instructions :
 
 **Instructions :**
 1. Cloner le dépôt.
