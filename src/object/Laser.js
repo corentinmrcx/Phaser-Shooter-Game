@@ -15,4 +15,11 @@ export class Laser extends Phaser.GameObjects.Ellipse {
     this.setVisible(true);
     this.body.setVelocityY(-500);
   }
+
+  preUpdate() {
+    if (this.y < 0) {
+      this.setActive(false);
+      this.setVisible(false);
+    }
+  }
 }
