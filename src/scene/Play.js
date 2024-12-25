@@ -13,7 +13,6 @@ export class Play extends Phaser.Scene {
   create() {
     const centreLargeur = this.scale.width / 2;
     const centreHauteur = this.scale.height / 2;
-    this.add.text(centreLargeur, 0, "A first scene").setOrigin(0.5, 0);
 
     this.player = new Player(this);
     this.lasers = new GroupLaser(this, 5);
